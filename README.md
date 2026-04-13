@@ -17,3 +17,8 @@ This will:
 
 # Examples
 I've provided some simple example effects that can be used as reference or to use alongside your Minilogue-XD.
+
+# TODO:
+- Versioning
+- Custom parameters
+- Oscillators
