@@ -1,10 +1,4 @@
+file(GLOB_RECURSE includes ${CMAKE_CURRENT_LIST_DIR}*.h)
+file(GLOB_RECURSE source ${CMAKE_CURRENT_LIST_DIR}*.cpp)
 
-file(GLOB_RECURSE waveshaper_source ${CMAKE_CURRENT_LIST_DIR}*.cpp)
-
-message(${CMAKE_CURRENT_LIST_DIR})
-
-add_executable(waveshaper ${waveshaper_source})
-
-target_include_directories(waveshaper PRIVATE
-    ${CMAKE_SOURCE_DIR}/sdk
-)
+GenerateModFx("waveshaper" "${includes}" "${source}")
