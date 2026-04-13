@@ -1,4 +1,4 @@
-# Korg-Fx-Bootstrap
+# Minilogue-xd-sdk-bootstrap
 
 The purpose of this project is to make developing Korg Minilogue-XD effects simpler. I've mainly just automated what they've already done in CMake. This could be expanded to be used for other Korg hardware.
 
