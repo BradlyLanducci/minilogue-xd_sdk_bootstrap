@@ -1,4 +1,4 @@
-# Minilogue-xd-sdk-bootstrap
+# Minilogue-xd sdk bootstrap
 
 The purpose of this project is to make developing Korg Minilogue-XD effects simpler. I've mainly just automated what they've already done in CMake. This could be expanded to be used for other Korg hardware.
 
@@ -18,7 +18,16 @@ This will:
 # Examples
 I've provided some simple example effects that can be used as reference or to use alongside your Minilogue-XD.
 
+# Uploading to Minilogue-XD
+
+There's two main ways to upload your units to your minilogue. The simplest way is via the minilogue-xd sound librarian, but for development it is convenient to use the logue-cli.
+
+An example command to upload your unit is.
+
+    logue-cli.exe load -u <UnitName>.mnlgxdunit -i <MidiInput> -o <MidiOutput> -s <ProgramIndex>
+
+Note: You may not need to set the midi in/out depending on your midi configuration.
+
 # TODO:
-- Versioning
 - Custom parameters
 - Oscillators

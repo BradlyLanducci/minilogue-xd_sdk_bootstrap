@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-set(CMAKE_CXX_STANDARD 20)
-
-project(KorgFx)
+project(MinilogueXdSdkBootstrap)
 
 include(${CMAKE_SOURCE_DIR}/KorgHelpers.cmake)
 
