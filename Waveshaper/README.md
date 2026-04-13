@@ -1,1 +1,0 @@
-Basic waveshaping effect for Korg Minilogue-XD.
