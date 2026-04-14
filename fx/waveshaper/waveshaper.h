@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "audio_processor.h"
+#include "mod_audio_processor.h"
 
 #include <cstdint>
 
@@ -11,14 +11,9 @@
 /*
     Waveshapes audio with a simple tanh function.
 */
-class Waveshaper : public AudioProcessor
+class Waveshaper : public ModAudioProcessor
 {
 public:
-    /// @brief Processes a single frame of audio for a L/R channel.
-    /// @param xL Input left.
-    /// @param xR Input right.
-    /// @param yL Output left to be calculated.
-    /// @param yr Output right to be calculated.
     void processFrame(const float xL, const float xR, float &yL, float &yR) override;
 
     /// @brief How much of this signal will be waveshaped vs dry.

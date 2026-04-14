@@ -1,21 +1,10 @@
-#include "audio_processor.h"
+#include "mod_audio_processor.h"
 
 //--------------------------------------------------------------------------------
 
-void AudioProcessor::updatePointers(const float *p_x, float *p_y)
+void ModAudioProcessor::processFrames(const float *p_x, float *p_y, uint32_t frames)
 {
-    mp_x = p_x;
-    mp_y = p_y;
-}
-
-//--------------------------------------------------------------------------------
-
-void AudioProcessor::processFrames(uint32_t frames)
-{
-    const float *p_x{ mp_x };
-    const float *p_xEnd{ mp_x + 2 * frames };
-
-    float *p_y{ mp_y };
+    const float *p_xEnd{ p_x + 2 * frames };
 
     for (; p_x != p_xEnd; p_x += 2, p_y += 2)
     {

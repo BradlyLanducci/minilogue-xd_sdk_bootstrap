@@ -66,8 +66,8 @@ function(GenerateDelayFx UnitName Version Includes Source)
 
     set(DelayDemoDir ${CMAKE_BINARY_DIR}/LogueSdk/platform/minilogue-xd/dummy-delfx)
     file(COPY ${DelayDemoDir}/Makefile DESTINATION ${UnitDir})
-    file(COPY ${DelayDemoDir}/ld DESTINATION ${UnitDir}/ld)
-    file(COPY ${DelayDemoDir}/tpl DESTINATION ${UnitDir}/tpl)
+    file(COPY ${DelayDemoDir}/ld DESTINATION ${UnitDir})
+    file(COPY ${DelayDemoDir}/tpl DESTINATION ${UnitDir})
 
     BuildKorgUnit(${UnitName})
 endfunction()
@@ -93,8 +93,8 @@ function(GenerateRevFx UnitName Version Includes Source)
     set(ReverbDemoDir ${CMAKE_BINARY_DIR}/LogueSdk/platform/minilogue-xd/dummy-revfx)
     
     file(COPY ${ReverbDemoDir}/Makefile DESTINATION ${UnitDir})
-    file(COPY ${ReverbDemoDir}/ld DESTINATION ${UnitDir}/ld)
-    file(COPY ${ReverbDemoDir}/tpl DESTINATION ${UnitDir}/tpl)
+    file(COPY ${ReverbDemoDir}/ld DESTINATION ${UnitDir})
+    file(COPY ${ReverbDemoDir}/tpl DESTINATION ${UnitDir})
 
     BuildKorgUnit(${UnitName})
 endfunction()
