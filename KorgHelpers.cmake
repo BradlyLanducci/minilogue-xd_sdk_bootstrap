@@ -21,8 +21,11 @@ function(GenerateKorgUnit UnitDir UnitName Includes Source)
 
     set(RelativeSource ${Source})
     list(TRANSFORM RelativeSource REPLACE ".*/" "")
+    
+    string(REPLACE ";" " " IncludesSpaced "${Includes}")
+    string(REPLACE ";" " " RelativeSourceSpaced "${RelativeSource}")
 
-    file(WRITE "${UnitDir}/project.mk" "PROJECT=${UnitName}\nUINCDIR=${Includes}\nUCXXSRC=${RelativeSource}")
+    file(WRITE "${UnitDir}/project.mk" "PROJECT=${UnitName}\nUINCDIR=${IncludesSpaced}\nUCXXSRC=${RelativeSourceSpaced}")
     
     # As far as I can tell this makefile is the same for every single unit...
     # So I abritarly picked this one
