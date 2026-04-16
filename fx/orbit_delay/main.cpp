@@ -4,27 +4,18 @@
 
 #include "orbit_delay.h"
 
-//--------------------------------------------------------------------------------
-
-constexpr uint32_t RamSize{ 192000 };
-static f32pair_t DelayRam[RamSize] __sdram;
+#include "userdelfx.h"
 
 //--------------------------------------------------------------------------------
 
-static OrbitDelay orbitDelay{ DelayRam, RamSize };
-
-//--------------------------------------------------------------------------------
-
-void DELFX_INIT(uint32_t platform, uint32_t api)
-{
-    (void)platform;
-    (void)api;
-}
+static f32pair_t DelayBuffer[MaxDelaySamples] __sdram;
+static OrbitDelay orbitDelay{ DelayBuffer, MaxDelaySamples };
 
 //--------------------------------------------------------------------------------
 
 void DELFX_PROCESS(float *xn, uint32_t frames)
 {
+    orbitDelay.processFrames(xn, frames);
 }
 
 //--------------------------------------------------------------------------------
@@ -32,12 +23,14 @@ void DELFX_PROCESS(float *xn, uint32_t frames)
 void DELFX_PARAM(uint8_t index, int32_t value)
 {
     // Convert fixed-point q31 format to float
-    const float valf{ q31_to_f32(value) };
+    float v{ q31_to_f32(value) };
     switch (index)
     {
     case k_user_delfx_param_time:
+        orbitDelay.setDelayTime(v);
         break;
     case k_user_delfx_param_depth:
+        orbitDelay.setFeedback(v);
         break;
     default:
         break;
