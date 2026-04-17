@@ -31,3 +31,4 @@ Note: You may not need to set the midi in/out depending on your midi configurati
 # TODO:
 - Custom parameters
 - Oscillators
+- Fix compiler warnings

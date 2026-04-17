@@ -12,7 +12,7 @@ constexpr uint32_t GetDelaySize(float maxNote, float minBpm)
 //--------------------------------------------------------------------------------
 
 constexpr float MinNote{ 1.f / 64.f };
-constexpr float MaxNote{ 1.f };
+constexpr float MaxNote{ 0.5f };
 
 /// @brief Minimum bpm of the Korg Minilogue-XD.
 constexpr float MinBpm{ 56.f };
@@ -23,6 +23,7 @@ constexpr uint32_t MaxDelaySamples{ GetDelaySize(MaxNote, MinBpm) };
 OrbitDelay::OrbitDelay()
     : m_delay(MaxDelaySamples)
 {
+    m_lfo.setFrequency(5.f);
 }
 
 //--------------------------------------------------------------------------------
@@ -40,6 +41,9 @@ void OrbitDelay::processFrame(float &xL, float &xR)
 
     // Apply orbital effect
     // Update pan & filter
+    float lfoCycle{ m_lfo.getNextCycle() };
+    m_panner.setPan(lfoCycle / 2.f + 0.5f);
+    m_panner.processFrame(xL, xR);
 }
 
 //--------------------------------------------------------------------------------

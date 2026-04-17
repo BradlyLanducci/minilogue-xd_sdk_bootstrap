@@ -2,9 +2,10 @@
 
 //--------------------------------------------------------------------------------
 
-#include "vlsdk.h"
 #include "processors/time_audio_processor.h"
 #include "dsp/delay.h"
+#include "dsp/sine_lfo.h"
+#include "dsp/stereo_panner.h"
 
 #include "osc_api.h"
 
@@ -25,6 +26,8 @@ private:
     float calcDelayOffset();
 
     vlsdk::Delay m_delay;
+    vlsdk::StereoPanner m_panner;
+    vlsdk::SineLfo m_lfo;
 
     float m_note{ 1.f };
     float m_feedback{ 0.5f };
