@@ -32,3 +32,4 @@ Note: You may not need to set the midi in/out depending on your midi configurati
 - Custom parameters
 - Oscillators
 - Fix compiler warnings
+- Add a way to enforce memory sizes defined by linker scripts
