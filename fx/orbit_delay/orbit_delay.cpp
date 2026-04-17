@@ -4,8 +4,24 @@
 
 //--------------------------------------------------------------------------------
 
-OrbitDelay::OrbitDelay(f32pair_t *p_buffer, uint32_t size)
-    : m_delay(p_buffer, size)
+constexpr uint32_t GetDelaySize(float maxNote, float minBpm)
+{
+    return vlsdk::nextPow2U32(4.f * static_cast<uint32_t>((60.f / minBpm) * (k_samplerate * maxNote)));
+}
+
+//--------------------------------------------------------------------------------
+
+constexpr float MinNote{ 1.f / 64.f };
+constexpr float MaxNote{ 1.f };
+
+/// @brief Minimum bpm of the Korg Minilogue-XD.
+constexpr float MinBpm{ 56.f };
+constexpr uint32_t MaxDelaySamples{ GetDelaySize(MaxNote, MinBpm) };
+
+//--------------------------------------------------------------------------------
+
+OrbitDelay::OrbitDelay()
+    : m_delay(MaxDelaySamples)
 {
 }
 

@@ -8,8 +8,7 @@
 
 //--------------------------------------------------------------------------------
 
-static f32pair_t DelayBuffer[MaxDelaySamples] __sdram;
-static OrbitDelay orbitDelay{ DelayBuffer, MaxDelaySamples };
+static OrbitDelay orbitDelay;
 
 //--------------------------------------------------------------------------------
 

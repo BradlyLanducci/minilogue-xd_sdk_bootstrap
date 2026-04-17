@@ -19,18 +19,26 @@ function(GenerateKorgUnit UnitDir UnitName Includes Source)
     file(REMOVE_RECURSE ${UnitDir})
     file(MAKE_DIRECTORY ${UnitDir})
 
-    set(RelativeSource ${Source})
-    list(TRANSFORM RelativeSource REPLACE ".*/" "")
+    file(COPY ${Includes} DESTINATION ${UnitDir})
+    file(COPY ${Source} DESTINATION ${UnitDir})
+
+    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ DESTINATION ${UnitDir})
+
+    file(GLOB_RECURSE UnitDirIncludes
+        RELATIVE ${UnitDir}
+        ${UnitDir}/*.h
+    )
     
-    string(REPLACE ";" " " IncludesSpaced "${Includes}")
-    string(REPLACE ";" " " RelativeSourceSpaced "${RelativeSource}")
+    file(GLOB_RECURSE UnitDirSources
+        RELATIVE ${UnitDir}
+        ${UnitDir}/*.cpp
+    )
+
+    string(REPLACE ";" " " IncludesSpaced "${UnitDirIncludes}")
+    string(REPLACE ";" " " RelativeSourceSpaced "${UnitDirSources}")
 
     file(WRITE "${UnitDir}/project.mk" "PROJECT=${UnitName}\nUINCDIR=${IncludesSpaced}\nUCXXSRC=${RelativeSourceSpaced}")
     
-    # As far as I can tell this makefile is the same for every single unit...
-    # So I abritarly picked this one
-    file(COPY ${Includes} DESTINATION ${UnitDir})
-    file(COPY ${Source} DESTINATION ${UnitDir})
 endfunction()
 
 function(GenerateHeader UnitDir UnitType OutputDir Version)
@@ -65,8 +73,16 @@ function(GenerateDelayFx UnitName Version Includes Source)
     GenerateHeader("${UnitDir}" "delfx" "${UnitDir}" "${Version}")
 
     set(DelayDemoDir ${CMAKE_BINARY_DIR}/LogueSdk/platform/minilogue-xd/dummy-delfx)
-    file(COPY ${DelayDemoDir}/Makefile DESTINATION ${UnitDir})
-    file(COPY ${DelayDemoDir}/ld DESTINATION ${UnitDir})
+
+    file(READ "${DelayDemoDir}/Makefile" CONTENTS)
+    string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
+    file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
+
+    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/userdelfx.ld)
+
+    file(COPY ${DelayDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)
+    file(COPY ${DelayDemoDir}/ld/rules.ld DESTINATION ${UnitDir}/ld)
     file(COPY ${DelayDemoDir}/tpl DESTINATION ${UnitDir})
 
     BuildKorgUnit(${UnitName})
@@ -78,8 +94,16 @@ function(GenerateModFx UnitName Version Includes Source)
     GenerateHeader("${UnitName}" "modfx" "${UnitDir}" "${Version}")
 
     set(ModDemoDir ${CMAKE_BINARY_DIR}/LogueSdk/platform/minilogue-xd/dummy-modfx)
-    file(COPY ${ModDemoDir}/Makefile DESTINATION ${UnitDir})
-    file(COPY ${ModDemoDir}/ld DESTINATION ${UnitDir})
+
+    file(READ "${ModDemoDir}/Makefile" CONTENTS)
+    string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
+    file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
+
+    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/usermodfx.ld)
+
+    file(COPY ${ModDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)
+    file(COPY ${ModDemoDir}/ld/rules.ld DESTINATION ${UnitDir}/ld)
     file(COPY ${ModDemoDir}/tpl DESTINATION ${UnitDir})
 
     BuildKorgUnit(${UnitName})
@@ -91,9 +115,16 @@ function(GenerateRevFx UnitName Version Includes Source)
     GenerateHeader("${UnitDir}" "revfx" "${UnitDir}" "${Version}")
 
     set(ReverbDemoDir ${CMAKE_BINARY_DIR}/LogueSdk/platform/minilogue-xd/dummy-revfx)
+
+    file(READ "${ReverbDemoDir}/Makefile" CONTENTS)
+    string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
+    file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
     
-    file(COPY ${ReverbDemoDir}/Makefile DESTINATION ${UnitDir})
-    file(COPY ${ReverbDemoDir}/ld DESTINATION ${UnitDir})
+    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/userrevfx.ld)
+
+    file(COPY ${ReverbDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)
+    file(COPY ${ReverbDemoDir}/ld/rules.ld DESTINATION ${UnitDir}/ld)
     file(COPY ${ReverbDemoDir}/tpl DESTINATION ${UnitDir})
 
     BuildKorgUnit(${UnitName})

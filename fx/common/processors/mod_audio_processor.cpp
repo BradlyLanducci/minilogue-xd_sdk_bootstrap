@@ -1,4 +1,8 @@
-#include "mod_audio_processor.h"
+#include "processors/mod_audio_processor.h"
+
+//--------------------------------------------------------------------------------
+
+BEGIN_VLSDK_NAMESPACE
 
 //--------------------------------------------------------------------------------
 
@@ -17,5 +21,9 @@ void ModAudioProcessor::processFrames(const float *p_x, float *p_y, uint32_t fra
         processFrame(xL, xR, yL, yR);
     }
 }
+
+//--------------------------------------------------------------------------------
+
+END_VLSDK_NAMESPACE
 
 //--------------------------------------------------------------------------------

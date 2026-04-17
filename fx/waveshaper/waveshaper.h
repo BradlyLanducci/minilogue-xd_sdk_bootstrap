@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "mod_audio_processor.h"
+#include "processors/mod_audio_processor.h"
 
 #include <cstdint>
 
@@ -11,7 +11,7 @@
 /*
     Waveshapes audio with a simple tanh function.
 */
-class Waveshaper : public ModAudioProcessor
+class Waveshaper : public vlsdk::ModAudioProcessor
 {
 public:
     void processFrame(const float xL, const float xR, float &yL, float &yR) override;
