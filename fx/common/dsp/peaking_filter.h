@@ -1,5 +1,7 @@
 #pragma once
 
+//--------------------------------------------------------------------------------
+
 #include "dsp/direct_filter.h"
 
 #include "osc_api.h"

@@ -39,14 +39,12 @@ void OrbitDelay::processFrame(float &xL, float &xR)
     xL += samplePair.a;
     xR += samplePair.b;
 
-    // Apply orbital effect
-    // Update pan & filter
     float lfoCycle{ m_lfo.getNextCycle() };
-    m_panner.setPan(lfoCycle / 2.f + 0.5f);
+
+    m_panner.setPan(lfoCycle * 0.5f + 0.5f);
     m_panner.processFrame(xL, xR);
 
-    m_filter.calculateLowpassCoefficients(8000.f + 3000.f * lfoCycle);
-    m_filter.processFrame(xL, xR);
+    m_filter.processFrame(xL, xR, lfoCycle);
 }
 
 //--------------------------------------------------------------------------------

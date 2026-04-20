@@ -12,13 +12,11 @@ BEGIN_VLSDK_NAMESPACE
 
 //--------------------------------------------------------------------------------
 
-/// @brief 2.375 MB
-constexpr uint32_t MaxMemoryPoolBytes{ 2 * 1024 * 1024 };
-
 class MemoryPool
 {
 public:
-    /// @brief We have 2.375 MB of sdram available so we allocate 1MB of it.
+    /// @brief 2 MB
+    static inline constexpr uint32_t MaxMemoryPoolBytes{ 2 * 1024 * 1024 };
 
     static uint8_t *getMemory(uint32_t size);
 

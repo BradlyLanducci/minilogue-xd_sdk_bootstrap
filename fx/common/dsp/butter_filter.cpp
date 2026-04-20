@@ -76,7 +76,7 @@ void ButterFilter::calculateHighpassCoefficients(float cutoffFrequency)
     float (&a)[DirectFilter::NumCoefficients]{ m_directFilter.getDenominatorCoefficients() };
 
     b[0] = 1.f;
-    b[1] = 2.f;
+    b[1] = -2.f;
     b[2] = 1.f;
 
     a[1] = (-2.f * pMul) + (2.f * wc2);

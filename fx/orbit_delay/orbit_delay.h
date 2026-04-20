@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------------------------
 
+#include "orbit_filter.h"
+
 #include "processors/time_audio_processor.h"
 #include "dsp/delay.h"
 #include "dsp/sine_lfo.h"
@@ -29,7 +31,7 @@ private:
     vlsdk::Delay m_delay;
     vlsdk::Panner m_panner;
     vlsdk::SineLfo m_lfo;
-    vlsdk::ButterFilter m_filter;
+    OrbitFilter m_filter;
 
     float m_note{ 1.f };
     float m_feedback{ 0.5f };
