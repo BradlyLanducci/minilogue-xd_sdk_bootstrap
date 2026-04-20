@@ -5,7 +5,7 @@
 #include "processors/time_audio_processor.h"
 #include "dsp/delay.h"
 #include "dsp/sine_lfo.h"
-#include "dsp/stereo_panner.h"
+#include "dsp/panner.h"
 #include "dsp/butter_filter.h"
 
 #include "osc_api.h"

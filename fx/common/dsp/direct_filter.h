@@ -13,8 +13,9 @@ BEGIN_VLSDK_NAMESPACE
 class DirectFilter
 {
 public:
-    const uint32_t NumCoefficients{ 3 };
-    const uint32_t NumChannels{ 2 };
+    static inline constexpr uint32_t NumCoefficients{ 3 };
+    static inline constexpr uint32_t NumChannels{ 2 };
+    static inline constexpr float PiDivSr{ M_PI / k_samplerate };
 
     float (&getNumeratorCoefficients())[NumCoefficients];
     float (&getDenominatorCoefficients())[NumCoefficients];

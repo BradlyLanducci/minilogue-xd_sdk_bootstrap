@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "vlsdk.h"
+#include "dsp/direct_filter.h"
 
 #include <utility>
 #include <complex>
@@ -27,23 +27,9 @@ public:
 private:
     void calculatePoles();
 
-    const uint32_t NumCoefficients{ 3 };
-    const uint32_t NumChannels{ 2 };
-
-    struct
-    {
-        float b[NumCoefficients]{};
-        float a[NumCoefficients]{};
-    } m_coefficients;
-
-    struct
-    {
-        float x[NumCoefficients]{};
-        float y[NumCoefficients]{};
-    } m_history[NumChannels];
-
     const float QualityFactor{ M_1_SQRT2 };
-    const float PiDivSr{ M_PI / k_samplerate };
+
+    DirectFilter m_directFilter;
 
     float m_poleNormalizationInv{ 1.f };
     float m_poleAdd{};
