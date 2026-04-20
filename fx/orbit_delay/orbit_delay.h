@@ -6,12 +6,13 @@
 #include "dsp/delay.h"
 #include "dsp/sine_lfo.h"
 #include "dsp/stereo_panner.h"
+#include "dsp/butter_filter.h"
 
 #include "osc_api.h"
 
 //--------------------------------------------------------------------------------
 
-class OrbitDelay : public vlsdk::TimeAudioProcessor
+class OrbitDelay final : public vlsdk::TimeAudioProcessor
 {
 public:
     OrbitDelay();
@@ -26,8 +27,9 @@ private:
     float calcDelayOffset();
 
     vlsdk::Delay m_delay;
-    vlsdk::StereoPanner m_panner;
+    vlsdk::Panner m_panner;
     vlsdk::SineLfo m_lfo;
+    vlsdk::ButterFilter m_filter;
 
     float m_note{ 1.f };
     float m_feedback{ 0.5f };

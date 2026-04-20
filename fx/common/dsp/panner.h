@@ -10,7 +10,7 @@ BEGIN_VLSDK_NAMESPACE
 
 //--------------------------------------------------------------------------------
 
-class StereoPanner
+class Panner
 {
 public:
     void setPan(float pan);

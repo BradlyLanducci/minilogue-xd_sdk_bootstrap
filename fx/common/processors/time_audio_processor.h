@@ -14,9 +14,6 @@ BEGIN_VLSDK_NAMESPACE
 
 /*
     Base abstract class for delay / reverb audio processing on the Korg Minilogue-XD.
-
-    It's okay to do inheritance here because this object is not constructable thus
-    we do not need a virtual destructor.
 */
 class TimeAudioProcessor
 {
@@ -30,6 +27,9 @@ public:
     /// @param p_x The input / output buffer.
     /// @param frames The number of frames to process.
     void processFrames(float *p_x, uint32_t frames);
+
+protected:
+    ~TimeAudioProcessor() = default;
 };
 
 //--------------------------------------------------------------------------------

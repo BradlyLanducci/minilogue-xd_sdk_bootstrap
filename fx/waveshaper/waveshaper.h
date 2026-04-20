@@ -11,7 +11,7 @@
 /*
     Waveshapes audio with a simple tanh function.
 */
-class Waveshaper : public vlsdk::ModAudioProcessor
+class Waveshaper final : public vlsdk::ModAudioProcessor
 {
 public:
     void processFrame(const float xL, const float xR, float &yL, float &yR) override;

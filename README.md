@@ -29,7 +29,7 @@ An example command to upload your unit is.
 Note: You may not need to set the midi in/out depending on your midi configuration.
 
 # TODO:
-- Custom parameters
-- Oscillators
 - Fix compiler warnings
 - Add a way to enforce memory sizes defined by linker scripts
+- ETL
+- Smoothed parameters

@@ -14,9 +14,6 @@ BEGIN_VLSDK_NAMESPACE
 
 /*
     Base abstract class for modulator audio processing on the Korg Minilogue-XD.
-
-    It's okay to do inheritance here because this object is not constructable thus
-    we do not need a virtual destructor.
 */
 class ModAudioProcessor
 {
@@ -33,6 +30,9 @@ public:
     /// @param p_y The output buffer.
     /// @param frames The number of frames to process.
     void processFrames(const float *p_x, float *p_y, uint32_t frames);
+
+protected:
+    ~ModAudioProcessor() = default;
 };
 
 //--------------------------------------------------------------------------------
