@@ -1,7 +1,7 @@
 #pragma once
 
-#include "dsp/butter_filter.h"
-#include "dsp/peaking_filter.h"
+#include "vlsdk_dsp/butter_filter.h"
+#include "vlsdk_dsp/peaking_filter.h"
 
 //--------------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
-#include "dsp/delay.h"
-#include "utilities/memory_pool.h"
+#include "vlsdk_dsp/delay.h"
+#include "vlsdk_utilities/memory_pool.h"
 
 #include <cstring>
 

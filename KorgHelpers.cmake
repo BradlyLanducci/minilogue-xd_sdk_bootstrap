@@ -22,7 +22,7 @@ function(GenerateKorgUnit UnitDir UnitName Includes Source)
     file(COPY ${Includes} DESTINATION ${UnitDir})
     file(COPY ${Source} DESTINATION ${UnitDir})
 
-    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ DESTINATION ${UnitDir})
+    file(COPY ${CMAKE_SOURCE_DIR}/vlsdk/ DESTINATION ${UnitDir})
 
     file(GLOB_RECURSE UnitDirIncludes
         RELATIVE ${UnitDir}
@@ -78,7 +78,7 @@ function(GenerateDelayFx UnitName Version Includes Source)
     string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
     file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
 
-    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(COPY ${CMAKE_SOURCE_DIR}/vlsdk/ld/user.ld DESTINATION ${UnitDir}/ld)
     file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/userdelfx.ld)
 
     file(COPY ${DelayDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)
@@ -99,7 +99,7 @@ function(GenerateModFx UnitName Version Includes Source)
     string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
     file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
 
-    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(COPY ${CMAKE_SOURCE_DIR}/vlsdk/ld/user.ld DESTINATION ${UnitDir}/ld)
     file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/usermodfx.ld)
 
     file(COPY ${ModDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)
@@ -120,7 +120,7 @@ function(GenerateRevFx UnitName Version Includes Source)
     string(REPLACE "c++11" "c++17" CONTENTS "${CONTENTS}")
     file(WRITE "${UnitDir}/Makefile" "${CONTENTS}")
     
-    file(COPY ${CMAKE_SOURCE_DIR}/fx/common/ld/user.ld DESTINATION ${UnitDir}/ld)
+    file(COPY ${CMAKE_SOURCE_DIR}/vlsdk/ld/user.ld DESTINATION ${UnitDir}/ld)
     file(RENAME ${UnitDir}/ld/user.ld ${UnitDir}/ld/userrevfx.ld)
 
     file(COPY ${ReverbDemoDir}/ld/main_api.syms DESTINATION ${UnitDir}/ld)

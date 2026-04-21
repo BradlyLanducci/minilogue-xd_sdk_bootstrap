@@ -1,4 +1,4 @@
-#include "dsp/butter_filter.h"
+#include "vlsdk_dsp/butter_filter.h"
 
 //--------------------------------------------------------------------------------
 
@@ -22,12 +22,6 @@ void ButterFilter::calculatePoles()
         { -M_1_SQRT2, -M_1_SQRT2 }
     };
 
-    std::complex<float> norm{ 1.0, 1.0 };
-
-    norm *= -p1;
-    norm *= -p2;
-
-    m_poleNormalizationInv = 1.f / norm.real();
     m_poleAdd = (p1 + p2).real();
     m_poleMult = (p1 * p2).real();
 }
@@ -55,7 +49,7 @@ void ButterFilter::calculateLowpassCoefficients(float cutoffFrequency)
     float aIntermediate{ 1.f + pMul };
 
     float a0{ aIntermediate - pAdd };
-    float normalizer{ m_poleNormalizationInv * a0 };
+    float normalizer{ 1.f / a0 };
     a[0] = normalizer;
 
     a[1] = aIntermediate + pAdd;
@@ -84,7 +78,8 @@ void ButterFilter::calculateHighpassCoefficients(float cutoffFrequency)
     float aIntermediate{ pMul + wc2 };
 
     float a0{ aIntermediate - pAdd };
-    float normalizer{ m_poleNormalizationInv * a0 };
+    float normalizer{ 1.f / a0 };
+
     a[0] = normalizer;
 
     a[2] = aIntermediate + pAdd;

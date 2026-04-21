@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "processors/mod_audio_processor.h"
+#include "vlsdk_processors/mod_audio_processor.h"
 
 #include <cstdint>
 

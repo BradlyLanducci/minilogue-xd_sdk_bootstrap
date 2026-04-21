@@ -4,11 +4,10 @@
 
 #include "orbit_filter.h"
 
-#include "processors/time_audio_processor.h"
-#include "dsp/delay.h"
-#include "dsp/sine_lfo.h"
-#include "dsp/panner.h"
-#include "dsp/butter_filter.h"
+#include "vlsdk_processors/time_audio_processor.h"
+#include "vlsdk_dsp/delay.h"
+#include "vlsdk_dsp/sine_lfo.h"
+#include "vlsdk_dsp/panner.h"
 
 #include "osc_api.h"
 

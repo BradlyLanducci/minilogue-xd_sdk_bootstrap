@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------------
 
-#include "dsp/direct_filter.h"
+#include "vlsdk_dsp/direct_filter.h"
 
 #include <utility>
 #include <complex>
@@ -31,7 +31,6 @@ private:
 
     DirectFilter m_directFilter;
 
-    float m_poleNormalizationInv{ 1.f };
     float m_poleAdd{};
     float m_poleMult{};
 };

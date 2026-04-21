@@ -1,4 +1,4 @@
-#include "dsp/sine_lfo.h"
+#include "vlsdk_dsp/sine_lfo.h"
 
 #include <cmath>
 

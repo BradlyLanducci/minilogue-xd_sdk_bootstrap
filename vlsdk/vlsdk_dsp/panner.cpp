@@ -1,4 +1,7 @@
-#include "processors/time_audio_processor.h"
+#include "vlsdk_dsp/panner.h"
+
+#include "float_math.h"
+#include <cmath>
 
 //--------------------------------------------------------------------------------
 
@@ -6,17 +9,17 @@ BEGIN_VLSDK_NAMESPACE
 
 //--------------------------------------------------------------------------------
 
-void TimeAudioProcessor::processFrames(float *p_x, uint32_t frames)
+void Panner::setPan(float pan)
 {
-    const float *p_xEnd{ p_x + 2 * frames };
+    m_pan = pan;
+}
 
-    for (; p_x != p_xEnd; p_x += 2)
-    {
-        float &xL{ *p_x };
-        float &xR{ *(p_x + 1) };
+//--------------------------------------------------------------------------------
 
-        processFrame(xL, xR);
-    }
+void Panner::processFrame(float &xL, float &xR)
+{
+    xL = std::cos(m_pan * M_PI / 2.f) * xL;
+    xR = std::sin(m_pan * M_PI / 2.f) * xR;
 }
 
 //--------------------------------------------------------------------------------
